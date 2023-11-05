@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script sr="script.js"></script>
+</head>
+
+<body>
+    <div id="entry-overlay">
+        <div class="entry-content">
+            <div style="text-align: center;">
+                <p>Click to play</p>
+                <button id="enterButton" onclick="closePlay()">Play</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
+        <a class="nav-link"
+            href="index.html"><span>G<span><span>a</span><span>t</span><span>h</span><span>e</span><span>r</span><span>i</span><span>n</span><span>g</span><span>
+                    </span><span>S</span><span>o</span><span>u</span><span>n</span><span>d</span><span>s</span></a>
+        <div class="nav-spacer"></div>
+        <a class="nav-link"
+            href="collection.html"><span>C<span><span>o<span><span>l<span><span>l<span><span>e<span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></a>
+        <a class="nav-link" href="about.html"><span>A</span><span>b</span><span>o</span><span>u</span><span>t</span></a>
+    </nav>
+
+    <audio controls autoplay loop style="display: none;">
+        <source src="bg-sound-final.wav" type="audio/wav">
+    </audio>
+
+
+
+<div class="spline-container">
+    <!-- spline -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.493/build/spline-viewer.js"></script>
+    <spline-viewer loading-anim url="https://prod.spline.design/UZzwHUk6-JN5bvtJ/scene.splinecode"></spline-viewer>
+</div>
+
+
+    <script>
+        //nav color change
+        const predeterminedColors = ['#F5DEDE', '#B3FFA7', '#CBE2EA', '#FF4F4F', '#969696', '#A2E0E4', '#828ECE', '#547357', '#4F60FF', '#EFFF8C',];
+
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * predeterminedColors.length);
+            return predeterminedColors[randomIndex];
+        }
+
+        function changeColorsOnHover(link) {
+            let intervalId;
+            link.addEventListener('mouseenter', () => {
+                intervalId = setInterval(() => {
+                    link.querySelectorAll('span').forEach(span => {
+                        span.style.color = getRandomColor();
+                    });
+                }, 100);// (color change interval)
+            });
+
+            link.addEventListener('mouseleave', () => {
+                clearInterval(intervalId); // Stop color-change interval.
+                link.querySelectorAll('span').forEach(span => {
+                    span.style.color = 'black';
+                });
+            });
+
+            // Play the click sound when the link is clicked
+            link.addEventListener('click', () => {
+                const click = new Audio('button-click.wav');
+                click.play();
+            });
+        }
+
+        navLinks.forEach(link => {
+            changeColorsOnHover(link);
+        });
+
+        function closePlay(){
+            var entryOverlay = document.getElementById('entry-overlay');
+            entryOverlay.style.animation = "fadeOut 1s";
+            setTimeout(function () {
+                entryOverlay.style.display = 'none';}, 1500)
+        }
+    </script>
+
+</body>
+
+</html>
