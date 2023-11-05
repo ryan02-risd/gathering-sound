@@ -42,14 +42,20 @@ body {
 
 #enterButton {
     background-color: transparent;
-    border: solid black 1px;
-    color: black;
+    outline:none;
+    color: white;
+    border: solid black .5px;
+    background:none;
+    background-color: rgb(174, 174, 174);
     font-size: 16px;
     cursor: pointer;
     border-radius: 20px;
-    padding: 5px 10px;
+    padding: 5px 15px;
+    margin: 10px;
 }
-
+#enterButton:hover {
+    font-family:"arial-narrow-italic" 
+}
 #enterButton:active {
     margin-bottom: -20px;
 }
